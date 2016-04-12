@@ -7,9 +7,17 @@
   angular.module('starter.interceptors', [])
     .factory('authInterceptor', authInterceptor);
 
-  function authInterceptor($q, $injector) {
+  function authInterceptor($q, $injector, $window) {
 
     return {
+      request: function(config) {
+
+        if($window.localStorage.getItem('token')) {
+          config.headers.token = $window.localStorage.getItem('token');
+        }
+
+        return config;
+      },
       responseError: function(rejection) {
         var loginModal = $injector.get('loginModal');
 
