@@ -3,7 +3,7 @@
   angular.module('starter.services', [])
     .service('authService', authService);
 
-  function authService($http, $window, host) {
+  function authService($http, $window, host, $q) {
     var authServ = {
       login: login
     };
