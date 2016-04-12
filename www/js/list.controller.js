@@ -1,7 +1,7 @@
 (function() {
   angular.module('starter.controllers')
 
-    .controller('ListCtrl', function($scope, $http, host) {
+    .controller('ListCtrl', function($scope) {
       $scope.lists = [
         { title: 'Shopping list', id: 1 },
         { title: 'Todo', id: 2 },
