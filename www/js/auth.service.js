@@ -1,6 +1,6 @@
 (function() {
 
-  angular.module('starter.controllers', [])
+  angular.module('starter.services', [])
     .service('authService', authService);
 
   function authService($http, $window, host, $q) {
@@ -16,7 +16,6 @@
       $http.post(host + '/users/login', user).then(function(response) {
         $window.localStorage.setItem('token', JSON.stringify(response.token));
       }, function(response) {
-        console.log('Login unsuccessful');
         return $q.reject(response.data);
       })
     }
