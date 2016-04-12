@@ -1,6 +1,6 @@
 (function() {
 
-  angular.module('starter.services', [])
+  angular.module('starter.services')
     .service('loginModal', loginModal);
 
   function loginModal($ionicModal, $rootScope) {
@@ -11,13 +11,6 @@
       };
 
     return loginModal;
-
-    // Create the login modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/login.html', {
-      scope: modalScope
-    }).then(function(newModal) {
-      modal = newModal;
-    });
 
     function show() {
       modalScope = $rootScope.$new();
@@ -39,6 +32,14 @@
           modalScope.closeLogin();
         }, 1000);
       };
+
+      // Create the login modal that we will use later
+      $ionicModal.fromTemplateUrl('templates/login.html', {
+        scope: modalScope
+      }).then(function(newModal) {
+        modal = newModal;
+        modal.show();
+      });
     }
 
   }
