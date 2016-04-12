@@ -13,7 +13,7 @@
       request: function(config) {
 
         if($window.localStorage.getItem('token')) {
-          config.headers.token = $window.localStorage.getItem('token');
+          config.headers.token = JSON.parse($window.localStorage.getItem('token'));
         }
 
         return config;

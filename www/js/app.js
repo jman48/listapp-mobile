@@ -22,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.constants', 
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
 
     .state('app', {
@@ -52,4 +52,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.constants', 
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/lists');
+
+  $httpProvider.interceptors.push('authInterceptor');
 });
