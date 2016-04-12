@@ -11,10 +11,10 @@
 
     return {
       responseError: function(rejection) {
-        var authService = $injector.get('auth');
+        var loginModal = $injector.get('loginModal');
 
         if (rejection.status === 401) {
-          authService.redirectToLogin();
+          loginModal.show();
         }
 
         return $q.reject(rejection);
