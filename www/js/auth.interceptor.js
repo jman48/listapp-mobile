@@ -4,7 +4,7 @@
 (function() {
   'use strict';
 
-  angular.module('listappFe')
+  angular.module('starter.interceptors', [])
     .factory('authInterceptor', authInterceptor);
 
   function authInterceptor($q, $injector) {
