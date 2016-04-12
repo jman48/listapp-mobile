@@ -13,8 +13,8 @@
     function login(username, password) {
       var user = {user: {username: username, password: password}};
 
-      $http.post(host + '/users/login', user).then(function(response) {
-        $window.localStorage.setItem('token', JSON.stringify(response.token));
+      return $http.post(host + '/users/login', user).then(function(response) {
+        $window.localStorage.setItem('token', JSON.stringify(response.data.token));
       }, function(response) {
         return $q.reject(response.data);
       })

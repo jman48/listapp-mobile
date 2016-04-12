@@ -23,7 +23,9 @@
       // Perform the login action when the user submits the login form
       modalScope.doLogin = function(username, password) {
 
-        authService.login(username, password);
+        authService.login(username, password).then(function() {
+          modal.hide();
+        });
       };
 
       // Create the login modal that we will use later
@@ -34,6 +36,5 @@
         modal.show();
       });
     }
-
   }
 })();
