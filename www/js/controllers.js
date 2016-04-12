@@ -41,14 +41,5 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ListsCtrl', function($scope) {
-  $scope.lists = [
-    { title: 'Shopping list', id: 1 },
-    { title: 'Todo', id: 2 },
-    { title: 'Tech', id: 3 },
-    { title: 'Music to try', id: 4 }
-  ];
-})
-
 .controller('ItemsCtrl', function($scope, $stateParams) {
 });

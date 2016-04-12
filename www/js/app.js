@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.constants'])
       views: {
         'menuContent': {
           templateUrl: 'templates/lists.html',
-          controller: 'ListsCtrl'
+          controller: 'ListCtrl'
         }
       }
     })
