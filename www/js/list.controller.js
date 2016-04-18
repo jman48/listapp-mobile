@@ -1,5 +1,5 @@
 (function() {
-  angular.module('starter.controllers')
+  angular.module('listapp.controllers')
 
     .controller('ListCtrl', function($scope, $http, listService) {
 

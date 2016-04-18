@@ -1,6 +1,6 @@
 (function() {
 
-  angular.module('starter.services')
+  angular.module('listapp.services')
     .service('loginModal', loginModal);
 
   function loginModal($ionicModal, $rootScope, authService) {

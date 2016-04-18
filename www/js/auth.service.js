@@ -1,6 +1,6 @@
 (function() {
 
-  angular.module('starter.services', [])
+  angular.module('listapp.services')
     .service('authService', authService);
 
   function authService($http, $window, host, $q) {

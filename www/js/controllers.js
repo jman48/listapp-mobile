@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('listapp.controllers')
 
   .controller('AppCtrl', function($scope, loginModal) {
 
