@@ -11,7 +11,7 @@
     return listServ;
 
     function getLists() {
-      $http.get(host + '/lists').then(function(response) {
+      return $http.get(host + '/lists').then(function(response) {
         return response.data;
       }, function(response) {
         $q.reject(response.data);
