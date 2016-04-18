@@ -1,6 +1,6 @@
 (function() {
 
-  angular.module('starter.services', [])
+  angular.module('listapp.services')
     .service('listService', listService);
 
   function listService($http, host, $q) {
