@@ -12,13 +12,11 @@ angular.module('listapp.controllers')
     $scope.showLogin = loginModal.show;
   })
 
-  .controller('ItemsCtrl', function($scope, $stateParams, $http, host) {
+  .controller('ItemsCtrl', function($scope, $stateParams, $http, host, itemService) {
     var listId = $stateParams.listId;
     $scope.items = [];
 
-    $scope.$on('$ionicView.enter', function(e) {
-      $http.get(host + '/lists/' + listId + '/items/').then(function(response) {
-        $scope.items = response.data;
+      itemService.getItems(listId).then(function(items) {
+        $scope.items = items;
       })
-    });
   });
