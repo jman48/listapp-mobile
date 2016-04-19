@@ -5,7 +5,8 @@
 
   function listService($http, host, $q) {
     var listServ = {
-      getLists: getLists
+      getLists: getLists,
+      deleteList: deleteList
     };
 
     return listServ;
@@ -15,6 +16,12 @@
         return response.data;
       }, function(response) {
         $q.reject(response.data);
+      });
+    }
+
+    function deleteList(listId) {
+      return $http.delete(host + '/lists/' + listId).then(function(response) {
+        return response.data;
       });
     }
   }
