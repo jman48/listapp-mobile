@@ -3,21 +3,24 @@
   angular.module('listapp.services')
     .service('modalService', modalService);
 
-  function modalService($ionicActionSheet) {
+  function modalService($ionicActionSheet, listService) {
     var modalServ = {
       showListOptions: showListOptions
-    }, optionsDialog;
+    }, hideOptions;
 
     return modalServ;
 
-    function showListOptions() {
-      optionsDialog = $ionicActionSheet.show({
+    function showListOptions(listId) {
+      hideOptions = $ionicActionSheet.show({
         buttons: [],
         destructiveText: 'Delete',
         titleText: 'Modify your List',
         cancelText: 'Cancel',
         cancel: function() {
-          // add cancel code..
+          hideOptions();
+        },
+        destructiveButtonClicked: function () {
+
         },
         buttonClicked: function(index) {
           return true;
