@@ -6,26 +6,36 @@
   function modalService($ionicActionSheet, listService) {
     var modalServ = {
       showListOptions: showListOptions
-    }, hideOptions;
+    }, hideActionSheet,
+      hideCallBack;
 
     return modalServ;
 
-    function showListOptions(listId) {
-      hideOptions = $ionicActionSheet.show({
+    function showListOptions(listId, callBack) {
+      hideCallBack = callBack;
+
+      hideActionSheet = $ionicActionSheet.show({
         buttons: [],
         destructiveText: 'Delete',
         titleText: 'Modify your List',
         cancelText: 'Cancel',
         cancel: function() {
-          hideOptions();
+          hideActionSheet();
         },
-        destructiveButtonClicked: function () {
-
+        destructiveButtonClicked: function() {
+          listService.deleteList(listId).then(function() {
+            hideOptions();
+          });
         },
         buttonClicked: function(index) {
           return true;
         }
       });
+    }
+
+    function hideOptions() {
+      hideActionSheet();
+      hideCallBack();
     }
   }
 })();
