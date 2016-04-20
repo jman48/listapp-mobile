@@ -5,8 +5,8 @@
 
       $scope.$on('$ionicView.enter', getLists);
 
-      $scope.showOptions = function(listId) {
-        modalService.showListOptions(listId, getLists);
+      $scope.showOptions = function(list) {
+        modalService.showListOptions(list, getLists);
       };
 
       function getLists() {
