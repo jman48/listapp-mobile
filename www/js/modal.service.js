@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('modalService', modalService);
 
-  function modalService($ionicActionSheet, listService) {
+  function modalService($ionicActionSheet, listService, popUpService) {
     var modalServ = {
       showListOptions: showListOptions
     }, hideActionSheet,
@@ -11,7 +11,7 @@
 
     return modalServ;
 
-    function showListOptions(listId, callBack) {
+    function showListOptions(list, callBack) {
       hideCallBack = callBack;
 
       hideActionSheet = $ionicActionSheet.show({
@@ -19,15 +19,21 @@
         destructiveText: 'Delete',
         titleText: 'Modify your List',
         cancelText: 'Cancel',
+        buttons: [
+          { text: 'Edit' }
+        ],
         cancel: function() {
           hideActionSheet();
         },
         destructiveButtonClicked: function() {
-          listService.deleteList(listId).then(function() {
+          listService.deleteList(list.id).then(function() {
             hideOptions();
           });
         },
         buttonClicked: function(index) {
+          if (index === 0) {
+            popUpService.showListOptions(list, hideCallBack).then(hideActionSheet);
+          }
           return true;
         }
       });
