@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('modalService', modalService);
 
-  function modalService($ionicActionSheet, listService, popUpService) {
+  function modalService($ionicActionSheet, listService, popUpService, $state) {
     var modalServ = {
       showListOptions: showListOptions
     }, hideActionSheet,
@@ -20,6 +20,7 @@
         titleText: 'Modify your List',
         cancelText: 'Cancel',
         buttons: [
+          { text: 'Show'},
           { text: 'Edit' }
         ],
         cancel: function() {
@@ -32,6 +33,8 @@
         },
         buttonClicked: function(index) {
           if (index === 0) {
+            $state.go('app.items', {listId: list.id})
+          } else if (index == 1) {
             popUpService.showListOptions(list, hideCallBack).then(hideActionSheet);
           }
           return true;
