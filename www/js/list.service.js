@@ -7,7 +7,8 @@
     var listServ = {
       getLists: getLists,
       deleteList: deleteList,
-      editList: editList
+      editList: editList,
+      addList: addList
     };
 
     return listServ;
@@ -30,6 +31,14 @@
       var list = {list: {name: listName}};
 
       return $http.put(host + '/lists/' + listId, list).then(function(response) {
+        return response.data;
+      });
+    }
+
+    function addList(listName) {
+      var list = {list: {name: listName}};
+
+      return $http.post(host + '/lists', list).then(function(response) {
         return response.data;
       });
     }
