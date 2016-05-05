@@ -5,7 +5,8 @@
 
   function itemService($http, host, $q) {
     var itemServ = {
-      getItems: getItems
+      getItems: getItems,
+      deleteItem: deleteItem
     };
 
     return itemServ;
@@ -15,6 +16,12 @@
         return response.data;
       }, function(response) {
         $q.reject(response.data);
+      });
+    }
+
+    function deleteItem(item) {
+      return $http.delete(host + '/lists/' + item.list_id + '/items/' + item.id).then(function(response) {
+        response.data;
       });
     }
   }
