@@ -6,7 +6,8 @@
   function itemService($http, host, $q) {
     var itemServ = {
       getItems: getItems,
-      deleteItem: deleteItem
+      deleteItem: deleteItem,
+      addItem: addItem
     };
 
     return itemServ;
@@ -22,6 +23,14 @@
     function deleteItem(item) {
       return $http.delete(host + '/lists/' + item.list_id + '/items/' + item.id).then(function(response) {
         response.data;
+      });
+    }
+
+    function addItem(itemName, listId) {
+      var newItem = {item: {name: itemName}};
+
+      return $http.post(host + '/lists/' + listId + '/items/', newItem).then(function(response) {
+        return response.data;
       });
     }
   }
