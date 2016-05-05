@@ -52,7 +52,6 @@
         titleText: 'Modify your Item',
         cancelText: 'Cancel',
         buttons: [
-          {text: 'Show'},
           {text: 'Edit'}
         ],
         cancel: function() {
@@ -64,11 +63,6 @@
           });
         },
         buttonClicked: function(index) {
-          if (index === 0) {
-            $state.go('app.items', {listId: list.id})
-          } else if (index == 1) {
-            popUpService.showListOptions(list, hideCallBack).then(hideActionSheet);
-          }
           return true;
         }
       });
