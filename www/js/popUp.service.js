@@ -6,7 +6,8 @@
   function popUpService($ionicPopup, $rootScope, listService) {
     var modalServ = {
       showListOptions: showListOptions,
-      showNewList: showNewList
+      showNewList: showNewList,
+      showNewItem: showNewItem
     }, hideCallBack;
 
     return modalServ;
@@ -60,6 +61,34 @@
             type: 'button-positive',
             onTap: function() {
               return listService.addList(scope.list.name).then(function() {
+                popUp.close();
+                hideCallBack();
+              });
+            }
+          }
+        ]
+      });
+    }
+
+    function showNewItem(callBack) {
+      hideCallBack = callBack;
+
+      var scope = $rootScope.$new(),
+        popUp;
+
+      scope.list = {name: ''};
+
+      popUp = $ionicPopup.show({
+        template: '<input type="text" ng-model="item.name">',
+        title: 'Enter item name',
+        scope: scope,
+        buttons: [
+          {text: 'Cancel'},
+          {
+            text: '<b>Create</b>',
+            type: 'button-positive',
+            onTap: function() {
+              return itemService.addItem(scope.list.name).then(function() {
                 popUp.close();
                 hideCallBack();
               });
