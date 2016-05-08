@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('popUpService', popUpService);
 
-  function popUpService($ionicPopup, $rootScope, listService) {
+  function popUpService($ionicPopup, $rootScope, listService, itemService) {
     var modalServ = {
       showListOptions: showListOptions,
       showNewList: showNewList,
@@ -70,13 +70,13 @@
       });
     }
 
-    function showNewItem(callBack) {
+    function showNewItem(listId, callBack) {
       hideCallBack = callBack;
 
       var scope = $rootScope.$new(),
         popUp;
 
-      scope.list = {name: ''};
+      scope.item = {name: ''};
 
       popUp = $ionicPopup.show({
         template: '<input type="text" ng-model="item.name">',
@@ -88,7 +88,7 @@
             text: '<b>Create</b>',
             type: 'button-positive',
             onTap: function() {
-              return itemService.addItem(scope.list.name).then(function() {
+              return itemService.addItem(scope.item.name, listId).then(function() {
                 popUp.close();
                 hideCallBack();
               });
