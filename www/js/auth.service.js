@@ -3,9 +3,10 @@
   angular.module('listapp.services')
     .service('authService', authService);
 
-  function authService($http, $window, host, $q) {
+  function authService($http, $window, host, $q, $rootScope) {
     var authServ = {
-      login: login
+      login: login,
+      logOut: logOut
     };
 
     return authServ;
@@ -18,6 +19,12 @@
       }, function(response) {
         return $q.reject(response.data);
       })
+    }
+
+    function logOut() {
+      $window.localStorage.removeItem('token');
+
+      $rootScope.$broadcast('loggedOut');
     }
   }
 })();

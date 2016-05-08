@@ -3,7 +3,6 @@
 
     .controller('ListCtrl', function($scope, $http, listService, modalService, popUpService) {
 
-      $scope.$on('$ionicView.enter', getLists);
       $scope.addList = addList;
 
       $scope.showOptions = function(list) {
@@ -19,6 +18,12 @@
       function addList() {
         popUpService.showNewList(getLists);
       }
+
+      $scope.$on('$ionicView.enter', getLists);
+
+      $scope.$on('loggedOut', function() {
+        $scope.lists = [];
+      });
     })
 
 })();
