@@ -6,10 +6,6 @@
       var listId = $stateParams.listId;
       $scope.items = [];
 
-      (function init() {
-        getItems();
-      })();
-
       $scope.showOptions = function(item) {
         modalService.showItemOptions(item, getItems);
       };
@@ -23,6 +19,12 @@
           $scope.items = items;
         });
       }
+
+      $scope.$on('$ionicView.enter', getItems);
+
+      $scope.$on('loggedOut', function() {
+        $scope.items = [];
+      });
     })
 
 })();
