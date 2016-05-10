@@ -11907,3 +11907,8 @@ a.button {
   right: 15px;
   font-size: 50px;
   color: green; }
+
+.errors {
+  color: red;
+  padding: 5px 16px;
+  display: inline-block; }
