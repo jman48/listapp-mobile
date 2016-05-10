@@ -22,10 +22,13 @@
 
       // Perform the login action when the user submits the login form
       modalScope.doLogin = function(username, password) {
+        modalScope.errors = null;
 
         authService.login(username, password).then(function() {
           modal.hide();
           $state.go('app.lists', $state.params, { reload: true });
+        }, function (error) {
+          modalScope.errors = error.message;
         });
       };
 
