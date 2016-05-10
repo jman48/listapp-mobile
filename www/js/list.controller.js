@@ -1,7 +1,7 @@
 (function() {
   angular.module('listapp.controllers')
 
-    .controller('ListCtrl', function($scope, $http, listService, modalService, popUpService) {
+    .controller('ListCtrl', function($scope, $http, listService, modalService, popUpService, loading) {
 
       $scope.addList = addList;
 
@@ -10,8 +10,11 @@
       };
 
       function getLists() {
+        loading.show();
+
         listService.getLists().then(function(lists) {
           $scope.lists = lists;
+          loading.hide();
         })
       }
 

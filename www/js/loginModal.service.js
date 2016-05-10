@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('loginModal', loginModal);
 
-  function loginModal($ionicModal, $rootScope, authService, $state) {
+  function loginModal($ionicModal, $rootScope, authService, $state, loading) {
     var modal,
       modalScope,
       loginModal = {
@@ -22,13 +22,16 @@
 
       // Perform the login action when the user submits the login form
       modalScope.doLogin = function(username, password) {
+        loading.show();
         modalScope.errors = null;
 
         authService.login(username, password).then(function() {
           modal.hide();
+          loading.hide();
           $state.go('app.lists', $state.params, { reload: true });
         }, function (error) {
           modalScope.errors = error.message;
+          loading.hide();
         });
       };
 
