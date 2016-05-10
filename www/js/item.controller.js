@@ -1,7 +1,7 @@
 (function() {
   angular.module('listapp.controllers')
 
-    .controller('ItemsCtrl', function($scope, $stateParams, itemService, modalService, popUpService) {
+    .controller('ItemsCtrl', function($scope, $stateParams, itemService, modalService, popUpService, loading) {
 
       var listId = $stateParams.listId;
       $scope.items = [];
@@ -15,8 +15,11 @@
       };
 
       function getItems() {
+        loading.show();
+
         itemService.getItems(listId).then(function(items) {
           $scope.items = items;
+          loading.hide();
         });
       }
 
