@@ -9,7 +9,7 @@
 
 
       $scope.showOptions = function(list) {
-        modalService.showEditList(list, getLists);
+        modalService.showListOptions(list, getLists);
       };
 
       $scope.load = function (list) {
