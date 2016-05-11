@@ -21,7 +21,7 @@
       scope.list = list;
 
       popUp = $ionicPopup.show({
-        template: '<input type="text" ng-model="list.name">',
+        template: '<input type="text" ng-model="list.name" autofocus="true">',
         title: 'Enter list name',
         scope: scope,
         buttons: [
@@ -51,7 +51,7 @@
       scope.list = {name: ''};
 
       popUp = $ionicPopup.show({
-        template: '<input type="text" ng-model="list.name">',
+        template: '<input type="text" ng-model="list.name" autofocus="true">',
         title: 'Enter list name',
         scope: scope,
         buttons: [
@@ -79,7 +79,7 @@
       scope.item = {name: ''};
 
       popUp = $ionicPopup.show({
-        template: '<input type="text" ng-model="item.name">',
+        template: '<input type="text" ng-model="item.name" autofocus="true">',
         title: 'Enter item name',
         scope: scope,
         buttons: [
