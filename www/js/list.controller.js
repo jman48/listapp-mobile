@@ -4,13 +4,18 @@
     .controller('ListCtrl', function($scope, $http, listService, modalService, popUpService, loading) {
 
       $scope.addList = addList;
+      $scope.lists = [];
+      getLists();
+
 
       $scope.showOptions = function(list) {
         modalService.showListOptions(list, getLists);
       };
 
       function getLists() {
-        loading.show();
+        if ($scope.lists == []) {
+          loading.show();
+        }
 
         listService.getLists().then(function(lists) {
           $scope.lists = lists;
