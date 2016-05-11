@@ -5,14 +5,14 @@
 
   function popUpService($ionicPopup, $rootScope, listService, itemService) {
     var modalServ = {
-      showListOptions: showListOptions,
+      showEditList: showEditList,
       showNewList: showNewList,
       showNewItem: showNewItem
     }, hideCallBack;
 
     return modalServ;
 
-    function showListOptions(list, callBack) {
+    function showEditList(list, callBack) {
       hideCallBack = callBack;
 
       var scope = $rootScope.$new(),
