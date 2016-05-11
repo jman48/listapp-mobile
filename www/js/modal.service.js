@@ -63,6 +63,7 @@
           });
         },
         buttonClicked: function(index) {
+          popUpService.showEditItem(item, callBack);
           return true;
         }
       });
