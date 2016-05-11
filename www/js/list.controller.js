@@ -1,7 +1,7 @@
 (function() {
   angular.module('listapp.controllers')
 
-    .controller('ListCtrl', function($scope, $http, listService, modalService, popUpService, loading) {
+    .controller('ListCtrl', function($scope, $http, listService, modalService, popUpService, loading, $state) {
 
       $scope.addList = addList;
       $scope.lists = [];
@@ -10,6 +10,10 @@
 
       $scope.showOptions = function(list) {
         modalService.showListOptions(list, getLists);
+      };
+
+      $scope.load = function (list) {
+        $state.go('app.items', {listId: list.id})
       };
 
       function getLists() {
