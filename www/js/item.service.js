@@ -7,7 +7,8 @@
     var itemServ = {
       getItems: getItems,
       deleteItem: deleteItem,
-      addItem: addItem
+      addItem: addItem,
+      editItem: editItem
     };
 
     return itemServ;
@@ -30,6 +31,14 @@
       var newItem = {item: {name: itemName}};
 
       return $http.post(host + '/lists/' + listId + '/items/', newItem).then(function(response) {
+        return response.data;
+      });
+    }
+
+    function editItem(item) {
+      var newitem = {item: {name: item.name}};
+
+      return $http.put(host + '/lists/' + item.list_id + '/items/' + item.id, newitem).then(function(response) {
         return response.data;
       });
     }
