@@ -17,7 +17,7 @@
       };
 
       function getLists() {
-        if ($scope.lists == []) {
+        if ($scope.lists.length === 0) {
           loading.show();
         }
 
