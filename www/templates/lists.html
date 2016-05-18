@@ -1,7 +1,7 @@
 <ion-view view-title="Lists">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="list in lists" ng-click="load(list)"  on-hold="showOptions(list)">
+      <ion-item ng-repeat="list in lists" on-tap="load(list)"  on-hold="showOptions(list)">
         {{list.name}}
       </ion-item>
     </ion-list>
