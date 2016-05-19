@@ -1,13 +1,20 @@
 (function() {
   angular.module('listapp.controllers')
-    .controller('LoginCtrl', function($scope, authService) {
+    .controller('LoginCtrl', function($scope, authService, $state) {
 
       $scope.login = function(username, password) {
-        authService.login(username, password).then(function() {
+        if (!username) {
+          $scope.errors = 'Username is required';
+        } else if (!password) {
+          $scope.errors = 'Password is required';
+        } else {
 
-        }, function(error) {
-          $scope.error = error.message;
-        });
+          authService.login(username, password).then(function() {
+            $state.go('app.lists');
+          }, function(error) {
+            $scope.errors = error.message;
+          });
+        }
       };
     });
 })();
