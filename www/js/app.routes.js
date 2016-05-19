@@ -17,13 +17,21 @@
           }
         }
       })
-
       .state('app.items', {
         url: '/lists/:listId',
         views: {
           'menuContent': {
             templateUrl: 'templates/items.html',
             controller: 'ItemsCtrl'
+          }
+        }
+      })
+      .state('login', {
+        url: '/login',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/login-page.html',
+            controller: 'LoginCtrl'
           }
         }
       });
