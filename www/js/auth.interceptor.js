@@ -19,10 +19,10 @@
         return config;
       },
       responseError: function(rejection) {
-        var loginModal = $injector.get('loginModal');
+        var $state = $injector.get('$state');
 
         if (rejection.status === 401) {
-          loginModal.show();
+          $state.go('login');
         }
 
         return $q.reject(rejection);
