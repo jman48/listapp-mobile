@@ -1,13 +1,13 @@
 <ion-view view-title="Lists">
   <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="list in lists" on-tap="load(list)" on-hold="showOptions(list)">
+    <ul class="list">
+      <li class="item" ng-repeat="list in lists" on-tap="load(list)" on-hold="showOptions(list)">
         {{list.name}}
         <span class="draggable">
           <i class="fa fa-sort" aria-hidden="true"></i>
         </span>
-      </ion-item>
-    </ion-list>
+      </li>
+    </ul>
   </ion-content>
   <i class="ion-plus-circled add-button" ng-click="addList()" data-pack="default" data-tags="add, new"></i>
 </ion-view>
