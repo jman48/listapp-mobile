@@ -6,5 +6,5 @@
   angular.module('listapp.interceptors', []);
   angular.module('listapp.constants', []);
   angular.module('listapp.directives', []);
-  angular.module('listapp', ['ionic', 'listapp.controllers', 'listapp.constants', 'listapp.interceptors', 'listapp.services', 'listapp.directives']);
+  angular.module('listapp', ['ionic', 'ui.router', 'listapp.controllers', 'listapp.constants', 'listapp.interceptors', 'listapp.services', 'listapp.directives']);
 })();
