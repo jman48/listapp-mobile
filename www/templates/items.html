@@ -1,10 +1,10 @@
 <ion-view view-title="{{list.name}}">
   <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="item in items" on-hold="showOptions(item)" on-tap="showOptions(item)">
+    <ul class="list">
+      <li class="item" ng-repeat="item in items" on-hold="showOptions(item)" on-tap="showOptions(item)">
         {{item.name}}
-      </ion-item>
-    </ion-list>
+      </li>
+    </ul>
   </ion-content>
   <i class="ion-plus-circled add-button" ng-click="addItem()" data-pack="default" data-tags="add, new"></i>
 </ion-view>
