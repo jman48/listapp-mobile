@@ -10,7 +10,7 @@
         } else {
 
           authService.login(username, password).then(function() {
-            $state.go('lists');
+            $state.go('app.lists');
           }, function(error) {
             $scope.errors = error.message;
           });
