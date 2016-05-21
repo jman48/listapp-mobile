@@ -20,7 +20,7 @@
       return $http.get(host + '/lists').then(function(response) {
         //Cache lists
         response.data.forEach(function(list) {
-          lists[list.id] = list.name;
+          lists[list.id] = list;
         });
 
         return response.data;
