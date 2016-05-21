@@ -4,17 +4,25 @@
     .service('listService', listService);
 
   function listService($http, host, $q) {
+    var lists = {};
+
     var listServ = {
       getLists: getLists,
       deleteList: deleteList,
       editList: editList,
-      addList: addList
+      addList: addList,
+      getList: getList
     };
 
     return listServ;
 
     function getLists() {
       return $http.get(host + '/lists').then(function(response) {
+        //Cache lists
+        response.data.forEach(function(list) {
+          lists[list.id] = list.name;
+        });
+
         return response.data;
       }, function(response) {
         $q.reject(response.data);
@@ -39,6 +47,16 @@
       var list = {list: {name: listName}};
 
       return $http.post(host + '/lists', list).then(function(response) {
+        return response.data;
+      });
+    }
+
+    function getList(id) {
+      if (lists[id]) {
+        return lists[id];
+      }
+
+      return $http.post(host + '/lists' + id).then(function(response) {
         return response.data;
       });
     }
