@@ -8,7 +8,8 @@
       getItems: getItems,
       deleteItem: deleteItem,
       addItem: addItem,
-      editItem: editItem
+      editItem: editItem,
+      saveOrder: saveOrder
     };
 
     return itemServ;
@@ -39,6 +40,14 @@
       var newitem = {item: {name: item.name}};
 
       return $http.put(host + '/lists/' + item.list_id + '/items/' + item.id, newitem).then(function(response) {
+        return response.data;
+      });
+    }
+
+    function saveOrder(list, items) {
+      var serverItems = {items: items};
+
+      return $http.put(host + '/lists/' + list.id + '/items/order', serverItems).then(function(response) {
         return response.data;
       });
     }
