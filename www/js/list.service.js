@@ -11,7 +11,8 @@
       deleteList: deleteList,
       editList: editList,
       addList: addList,
-      getList: getList
+      getList: getList,
+      saveOrder: saveOrder
     };
 
     return listServ;
@@ -57,6 +58,14 @@
       }
 
       return $http.post(host + '/lists' + id).then(function(response) {
+        return response.data;
+      });
+    }
+
+    function saveOrder(lists) {
+      var lists = {lists: lists};
+
+      return $http.put(host + '/lists/order', lists).then(function(response) {
         return response.data;
       });
     }

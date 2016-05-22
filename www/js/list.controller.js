@@ -45,6 +45,8 @@
           orderedLists.push({id: list.id, order: counter});
           counter++;
         });
+
+        listService.saveOrder(orderedLists);
       }
 
       $scope.$on('$ionicView.enter', getLists);
