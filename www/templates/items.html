@@ -1,8 +1,11 @@
-<ion-view view-title="{{list.name}}">
-  <ion-content>
-    <ul class="list">
-      <li class="item" ng-repeat="item in items" on-hold="showOptions(item)" on-tap="showOptions(item)">
+<ion-view view-title="{{list.name}}" id="items">
+  <ion-content has-bouncing="false">
+    <ul class="list" as-sortable="{containment: '#items', containerPositioning: 'relative'}" ng-model="items">
+      <li class="item" ng-repeat="item in items" on-hold="showOptions(item)" on-tap="showOptions(item)" as-sortable-item>
         {{item.name}}
+        <span class="draggable" as-sortable-item-handle>
+          <i class="fa fa-sort" aria-hidden="true"></i>
+        </span>
       </li>
     </ul>
   </ion-content>
