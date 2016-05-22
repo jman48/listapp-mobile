@@ -1,6 +1,6 @@
 <ion-view view-title="Lists" id="lists">
   <ion-content has-bouncing="false">
-    <ul class="list" as-sortable="{containment: '#lists', containerPositioning: 'relative'}" ng-model="lists">
+    <ul class="list" as-sortable="sortableOptions" ng-model="lists">
       <li class="item" ng-repeat="list in lists" on-tap="load(list)" on-hold="showOptions(list)" as-sortable-item>
         {{list.name}}
         <span class="draggable" as-sortable-item-handle>

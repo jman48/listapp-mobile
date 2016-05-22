@@ -12,8 +12,14 @@
         modalService.showListOptions(list, getLists);
       };
 
-      $scope.load = function (list) {
+      $scope.load = function(list) {
         $state.go('app.items', {listId: list.id})
+      };
+
+      $scope.sortableOptions = {
+        orderChanged: updateOrder,
+        containment: '#lists',
+        containerPositioning: 'relative'
       };
 
       function getLists() {
@@ -29,6 +35,16 @@
 
       function addList() {
         popUpService.showNewList(getLists);
+      }
+
+      function updateOrder() {
+        var orderedLists = [],
+          counter = 0;
+
+        $scope.lists.forEach(function(list) {
+          orderedLists.push({id: list.id, order: counter});
+          counter++;
+        });
       }
 
       $scope.$on('$ionicView.enter', getLists);
