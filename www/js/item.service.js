@@ -8,13 +8,18 @@
       getItems: getItems,
       deleteItem: deleteItem,
       addItem: addItem,
-      editItem: editItem
+      editItem: editItem,
+      saveOrder: saveOrder
     };
 
     return itemServ;
 
     function getItems(listId) {
       return $http.get(host + '/lists/' + listId + '/items/').then(function(response) {
+        response.data.sort(function(a, b) {
+          return a.order - b.order;
+        });
+
         return response.data;
       }, function(response) {
         $q.reject(response.data);
@@ -39,6 +44,14 @@
       var newitem = {item: {name: item.name}};
 
       return $http.put(host + '/lists/' + item.list_id + '/items/' + item.id, newitem).then(function(response) {
+        return response.data;
+      });
+    }
+
+    function saveOrder(list, items) {
+      var serverItems = {items: items};
+
+      return $http.put(host + '/lists/' + list.id + '/items/order', serverItems).then(function(response) {
         return response.data;
       });
     }
