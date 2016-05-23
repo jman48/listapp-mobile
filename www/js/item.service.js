@@ -16,6 +16,10 @@
 
     function getItems(listId) {
       return $http.get(host + '/lists/' + listId + '/items/').then(function(response) {
+        response.data.sort(function(a, b) {
+          return a.order - b.order;
+        });
+
         return response.data;
       }, function(response) {
         $q.reject(response.data);
