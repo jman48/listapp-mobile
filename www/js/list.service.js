@@ -23,6 +23,10 @@
         response.data.forEach(function(list) {
           lists[list.id] = list;
         });
+        
+        response.data.sort(function(a, b) {
+          return a.order - b.order;
+        });
 
         return response.data;
       }, function(response) {
