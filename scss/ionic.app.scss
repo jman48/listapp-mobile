@@ -36,3 +36,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   padding: 5px 16px;
   display: inline-block;
 }
+
+.draggable {
+  position: absolute;
+  right: 0;
+  padding: 16px 15px;
+  top: 0;
+}
