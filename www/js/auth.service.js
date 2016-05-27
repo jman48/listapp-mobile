@@ -3,28 +3,41 @@
   angular.module('listapp.services')
     .service('authService', authService);
 
-  function authService($http, $window, host, $q, $rootScope) {
+  function authService(auth, store, $state) {
     var authServ = {
       login: login,
-      logOut: logOut
+      logOut: logOut,
+      isAuthenticated: isAuthenticated
     };
 
     return authServ;
 
-    function login(email, password) {
-      var user = {user: {email: email, password: password}};
-
-      return $http.post(host + '/users/login', user).then(function(response) {
-        $window.localStorage.setItem('token', JSON.stringify(response.data.token));
-      }, function(response) {
-        return $q.reject(response.data);
-      })
+    function login() {
+      auth.signin({
+        authParams: {
+          scope: 'openid offline_access',
+          device: 'Mobile device'
+        }
+      }, function(profile, token, accessToken, state, refreshToken) {
+        // Success callback
+        store.set('profile', profile);
+        store.set('token', token);
+        store.set('refreshToken', refreshToken);
+        $state.go('app.lists');
+      }, function() {
+        // Error callback
+      });
     }
 
     function logOut() {
-      $window.localStorage.removeItem('token');
+      auth.signout();
+      store.remove('profile');
+      store.remove('token');
+      $state.go('login', {reload: true});
+    }
 
-      $rootScope.$broadcast('loggedOut');
+    function isAuthenticated() {
+      return auth.isAuthenticated;
     }
   }
 })();

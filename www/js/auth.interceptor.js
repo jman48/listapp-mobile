@@ -7,17 +7,9 @@
   angular.module('listapp.interceptors', [])
     .factory('authInterceptor', authInterceptor);
 
-  function authInterceptor($q, $injector, $window) {
+  function authInterceptor($q, $injector) {
 
     return {
-      request: function(config) {
-
-        if($window.localStorage.getItem('token')) {
-          config.headers.token = JSON.parse($window.localStorage.getItem('token'));
-        }
-
-        return config;
-      },
       responseError: function(rejection) {
         var $state = $injector.get('$state');
 
