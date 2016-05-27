@@ -23,7 +23,7 @@
       };
 
       function getLists() {
-        if ($scope.lists.length === 0) {
+        if (!$scope.lists || $scope.lists.length === 0) {
           loading.show();
         }
 
