@@ -1,20 +1,20 @@
 (function() {
   angular.module('listapp.controllers')
-    .controller('LoginCtrl', function($scope, authService, $state) {
+    .controller('LoginCtrl', function($scope, $state, authService) {
 
-      $scope.login = function(username, password) {
-        if (!username) {
-          $scope.errors = 'Username is required';
-        } else if (!password) {
-          $scope.errors = 'Password is required';
-        } else {
-
-          authService.login(username, password).then(function() {
-            $state.go('app.lists');
-          }, function(error) {
-            $scope.errors = error.message;
-          });
-        }
+      $scope.login = function() {
+        authService.login();
       };
+
+      function refreshLogin() {
+        if (authService.isAuthenticated()) {
+          $state.go('app.lists');
+        } else {
+          authService.login();
+        }
+      }
+
+      $scope.$on('$ionicView.enter', refreshLogin);
+
     });
 })();
