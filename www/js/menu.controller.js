@@ -4,9 +4,11 @@
 
   menuController.$inject = ['$scope', 'authService', '$state'];
 
-  function menuController($scope, authService, $state) {
+  function menuController($scope, store, $state, auth) {
     $scope.logout = function() {
-      authService.logOut();
+      auth.signout();
+      store.remove('profile');
+      store.remove('token');
       $state.go('login', {reload: true});
     }
   }
