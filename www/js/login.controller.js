@@ -2,19 +2,22 @@
   angular.module('listapp.controllers')
     .controller('LoginCtrl', function($scope, authService, $state) {
 
-      $scope.login = function(username, password) {
-        if (!username) {
-          $scope.errors = 'Username is required';
-        } else if (!password) {
-          $scope.errors = 'Password is required';
-        } else {
+      $scope.login = function() {
+        auth.signin({
+          authParams: {
+            scope: 'openid offline_access',
+            device: 'Mobile device'
+          }
+        }, function(profile, token, accessToken, state, refreshToken) {
+          // Success callback
+          store.set('profile', profile);
+          store.set('token', token);
+          store.set('refreshToken', refreshToken);
+          $state.go('app.lists');
+        }, function() {
+          // Error callback
+        });
+      }
 
-          authService.login(username, password).then(function() {
-            $state.go('app.lists');
-          }, function(error) {
-            $scope.errors = error.message;
-          });
-        }
-      };
     });
 })();
