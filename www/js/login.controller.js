@@ -1,23 +1,20 @@
 (function() {
   angular.module('listapp.controllers')
-    .controller('LoginCtrl', function($scope, authService, $state, auth, store) {
+    .controller('LoginCtrl', function($scope, $state, authService) {
 
       $scope.login = function() {
-        auth.signin({
-          authParams: {
-            scope: 'openid offline_access',
-            device: 'Mobile device'
-          }
-        }, function(profile, token, accessToken, state, refreshToken) {
-          // Success callback
-          store.set('profile', profile);
-          store.set('token', token);
-          store.set('refreshToken', refreshToken);
+        authService.login();
+      };
+
+      function refreshLogin() {
+        if (authService.isAuthenticated()) {
           $state.go('app.lists');
-        }, function() {
-          // Error callback
-        });
+        } else {
+          authService.login();
+        }
       }
+
+      $scope.$on('$ionicView.enter', refreshLogin);
 
     });
 })();
