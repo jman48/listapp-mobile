@@ -29,7 +29,7 @@ angular.module('listapp')
     jwtInterceptorProvider.tokenGetter = function(store, jwtHelper, auth) {
       var idToken = store.get('token');
       var refreshToken = store.get('refreshToken');
-      
+
       // If no token return null
       if (!idToken || !refreshToken) {
         return null;
