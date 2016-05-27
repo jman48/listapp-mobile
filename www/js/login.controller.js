@@ -1,6 +1,6 @@
 (function() {
   angular.module('listapp.controllers')
-    .controller('LoginCtrl', function($scope, authService, $state) {
+    .controller('LoginCtrl', function($scope, authService, $state, auth, store) {
 
       $scope.login = function() {
         auth.signin({
