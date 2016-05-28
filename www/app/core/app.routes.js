@@ -4,14 +4,14 @@
       .state('app', {
         url: '/app',
         abstract: true,
-        templateUrl: 'templates/menu.html',
+        templateUrl: 'app/menu/menu.html',
         controller: 'menuCtrl'
       })
       .state('app.lists', {
         url: '/lists',
         views: {
           'menuContent': {
-            templateUrl: 'templates/lists.html',
+            templateUrl: 'app/list/lists.html',
             controller: 'ListCtrl'
           }
         }
@@ -20,14 +20,14 @@
         url: '/lists/:listId',
         views: {
           'menuContent': {
-            templateUrl: 'templates/items.html',
+            templateUrl: 'app/item/items.html',
             controller: 'ItemsCtrl'
           }
         }
       })
       .state('login', {
         url: '/login',
-        templateUrl: 'templates/login-page.html',
+        templateUrl: 'app/login/login-page.html',
         controller: 'LoginCtrl'
       });
     // if none of the above states are matched, use this as the fallback
