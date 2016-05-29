@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('modalService', modalService);
 
-  function modalService($ionicActionSheet, listService, itemService, popUpService, $state) {
+  function modalService($ionicActionSheet, listService, itemService, popUpService, $state, $ionicModal) {
     var modalServ = {
         showListOptions: showListOptions,
         showItemOptions: showItemOptions
@@ -22,7 +22,8 @@
         cancelText: 'Cancel',
         buttons: [
           {text: 'Show'},
-          {text: 'Edit'}
+          {text: 'Edit'},
+          {text: 'Share'}
         ],
         cancel: function() {
           hideActionSheet();
@@ -37,6 +38,9 @@
             $state.go('app.items', {listId: list.id})
           } else if (index == 1) {
             popUpService.showEditList(list, hideCallBack).then(hideActionSheet);
+          } else if (index == 2) {
+            //Add user to list.
+            addUserModal()
           }
           return true;
         }
@@ -66,6 +70,19 @@
           popUpService.showEditItem(item, callBack);
           return true;
         }
+      });
+    }
+
+    function addUserModal() {
+      var modal,
+        modalScope = $rootScope.$new();
+
+      $ionicModal.fromTemplateUrl('app/templates/addUser.html', {
+        scope: modalScope,
+        animation: 'slide-in-up'
+      }).then(function(initModal) {
+        modal = initModal;
+        modal.show();
       });
     }
 
