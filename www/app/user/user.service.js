@@ -14,7 +14,7 @@
     function search(search_string) {
       var search = {search: {username: search_string}};
 
-      $http.post(host + '/users/search', search).then(function(response) {
+      return $http.post(host + '/users/search', search).then(function(response) {
         return response.data;
       }, function(response) {
         $q.reject(response.data);

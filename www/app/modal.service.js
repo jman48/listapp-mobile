@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('modalService', modalService);
 
-  function modalService($ionicActionSheet, listService, itemService, popUpService, $state, $ionicModal) {
+  function modalService($ionicActionSheet, listService, itemService, popUpService, $state, $ionicModal, userService, $rootScope) {
     var modalServ = {
         showListOptions: showListOptions,
         showItemOptions: showItemOptions
@@ -76,6 +76,25 @@
     function addUserModal() {
       var modal,
         modalScope = $rootScope.$new();
+      modalScope.users = [];
+      
+      modalScope.update = function(searchString) {
+        if (searchString.length > 2) {
+          userService.search(searchString).then(function(usernames) {
+            modalScope.usernames = usernames;
+          })
+        }
+      };
+
+      modalScope.toggleUser = function (username) {
+        var userIdx = modalScope.users.indexOf(username);
+
+        if (userIdx >= 0) {
+          modalScope.users.splice(userIdx, 1);
+        } else {
+          modalScope.users.push(username);
+        }
+      };
 
       $ionicModal.fromTemplateUrl('app/templates/addUser.html', {
         scope: modalScope,
