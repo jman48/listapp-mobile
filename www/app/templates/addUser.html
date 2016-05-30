@@ -1,6 +1,6 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">Add User</h1>
+    <h1 class="title">Add Users to list {{list.name}}</h1>
   </ion-header-bar>
   <ion-content>
     <label class="item item-input">
@@ -11,7 +11,7 @@
       <ion-checkbox ng-model="test" ng-change="toggleUser(username)" ng-repeat="username in usernames">{{username}}</ion-checkbox>
     </ion-list>
 
-    <button class="button button-full button-positive">
+    <button class="button button-full button-positive" ng-click="addUsers()">
       Add Users
     </button>
   </ion-content>

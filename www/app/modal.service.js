@@ -40,7 +40,7 @@
             popUpService.showEditList(list, hideCallBack).then(hideActionSheet);
           } else if (index == 2) {
             //Add user to list.
-            addUserModal()
+            addUserModal(list)
           }
           return true;
         }
@@ -73,9 +73,10 @@
       });
     }
 
-    function addUserModal() {
+    function addUserModal(list) {
       var modal,
         modalScope = $rootScope.$new();
+      modalScope.list = list;
       modalScope.users = [];
       
       modalScope.update = function(searchString) {
@@ -94,6 +95,10 @@
         } else {
           modalScope.users.push(username);
         }
+      };
+      
+      modalScope.addUsers = function() {
+        userService.addUsers(list, modalScope.users);
       };
 
       $ionicModal.fromTemplateUrl('app/templates/addUser.html', {
