@@ -6,7 +6,8 @@
   function userService($http, host, $q) {
 
     var userServ = {
-      search: search
+      search: search,
+      addUsers: addUsers
     };
 
     return userServ;
@@ -18,6 +19,14 @@
         return response.data;
       }, function(response) {
         $q.reject(response.data);
+      });
+    }
+
+    function addUsers(list, users) {
+      var addToList = {users: users};
+
+      return $http.post(host + 'list/' + list.id + '/users', addToList).then(function(response) {
+        return response.data;
       });
     }
   }
