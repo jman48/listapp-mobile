@@ -25,7 +25,7 @@
     function addUsers(list, users) {
       var addToList = {users: users};
 
-      return $http.post(host + '/list/' + list.id + '/users', addToList).then(function(response) {
+      return $http.post(host + '/lists/' + list.id + '/users', addToList).then(function(response) {
         return response.data;
       });
     }
