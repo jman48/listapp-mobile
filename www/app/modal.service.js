@@ -74,8 +74,7 @@
     }
 
     function addUserModal(list) {
-      var modal,
-        modalScope = $rootScope.$new();
+      var modalScope = $rootScope.$new();
       modalScope.list = list;
       modalScope.users = [];
       
@@ -101,12 +100,16 @@
         userService.addUsers(list, modalScope.users);
       };
 
+      modalScope.closeModal = function() {
+        modalScope.modal.hide();
+      };
+
       $ionicModal.fromTemplateUrl('app/templates/addUser.html', {
         scope: modalScope,
         animation: 'slide-in-up'
       }).then(function(initModal) {
-        modal = initModal;
-        modal.show();
+        modalScope.modal = initModal;
+        modalScope.modal.show();
       });
     }
 
