@@ -77,7 +77,7 @@
       var modalScope = $rootScope.$new();
       modalScope.list = list;
       modalScope.users = [];
-      
+
       modalScope.update = function(searchString) {
         if (searchString.length > 2) {
           userService.search(searchString).then(function(usernames) {
@@ -95,9 +95,11 @@
           modalScope.users.push(username);
         }
       };
-      
+
       modalScope.addUsers = function() {
-        userService.addUsers(list, modalScope.users);
+        userService.addUsers(list, modalScope.users).then(function() {
+          modalScope.closeModal();
+        });
       };
 
       modalScope.closeModal = function() {
