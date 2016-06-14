@@ -15,6 +15,9 @@
     return userServ;
 
     function search(search_string) {
+      if (search_string === '' || !search_string) {
+        return $q.resolve([]);
+      }
 
       //Get users from local cache if we are only refining the list of users.
       //e.g if we searched for "bob" then cache all results for bob so when we search for "bobb" we can get results from local cache
@@ -28,6 +31,8 @@
         }
 
         return $q.resolve(users);
+      } else if (search_string.length < 3) {
+        return $q.resolve([]);
       }
 
       //If search string is not in cache then get results from server

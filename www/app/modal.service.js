@@ -78,12 +78,10 @@
       modalScope.list = list;
       modalScope.users = [];
 
-      modalScope.update = function(searchString) {
-        if (searchString.length > 2) {
-          userService.search(searchString).then(function(users) {
-            modalScope.users = users;
-          })
-        }
+      modalScope.update = function (searchString) {
+        userService.search(searchString).then(function (users) {
+          modalScope.users = users;
+        })
       };
 
       modalScope.toggleUser = function (username) {
