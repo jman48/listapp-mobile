@@ -80,8 +80,8 @@
 
       modalScope.update = function(searchString) {
         if (searchString.length > 2) {
-          userService.search(searchString).then(function(usernames) {
-            modalScope.usernames = usernames;
+          userService.search(searchString).then(function(users) {
+            modalScope.users = users;
           })
         }
       };

@@ -11,7 +11,10 @@
       <input type="text" ng-model="searchString" ng-change="update(searchString)"/>
     </label>
     <ion-list>
-      <ion-checkbox on-tap="toggleUser(username)" ng-repeat="username in usernames">{{username}}</ion-checkbox>
+      <ion-checkbox on-tap="toggleUser(username)" ng-repeat="user in users">
+        <img class="search-user-image" ng-src="{{user.picture}}" alt="user picture" />
+        <span class="search-user-name">{{user.username}}</span>
+      </ion-checkbox>
     </ion-list>
 
     <button class="button button-full button-positive" ng-click="addUsers()">
