@@ -7,3 +7,5 @@ plugins/
 bower_components
 www/lib
 resources
+.idea
+www/css
