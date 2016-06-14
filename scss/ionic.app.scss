@@ -22,10 +22,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-// Gets fonts from font-awesome cdn
-$fa-font-path:        "//netdna.bootstrapcdn.com/font-awesome/4.6.3/fonts" !default; // for referencing Bootstrap CDN font files directly
-
-
 .add-button {
   position: absolute;
   bottom: 15px;
