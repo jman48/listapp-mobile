@@ -1,0 +1,24 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Add to {{list.name}}</h1>
+    <button ng-click="closeModal()" class="button button-clear button-positive">
+      Cancel
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <label class="item item-input">
+      <span class="input-label">Username</span>
+      <input type="text" ng-model="searchString" ng-change="update(searchString)"/>
+    </label>
+    <ion-list>
+      <ion-checkbox on-tap="toggleUser(username)" ng-repeat="user in users">
+        <img class="search-user-image" ng-src="{{user.picture}}" alt="user picture" />
+        <span class="search-user-name">{{user.username}}</span>
+      </ion-checkbox>
+    </ion-list>
+
+    <button class="button button-full button-positive" ng-click="addUsers()">
+      Add Users
+    </button>
+  </ion-content>
+</ion-modal-view>

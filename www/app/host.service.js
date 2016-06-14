@@ -1,5 +1,5 @@
 (function() {
-  
+
   angular.module('listapp.constants', [])
-    .constant('host', 'https://listapp-api.herokuapp.com');
+    .constant('host', 'http://listapp-api.herokuapp.com');
 })();
