@@ -23,7 +23,7 @@
         buttons: [
           {text: 'Show'},
           {text: 'Edit'},
-          {text: 'Share'}
+          {text: 'Users'}
         ],
         cancel: function() {
           hideActionSheet();
@@ -39,8 +39,8 @@
           } else if (index == 1) {
             popUpService.showEditList(list, hideCallBack).then(hideActionSheet);
           } else if (index == 2) {
-            //Add user to list.
-            userModalService.addUserModal(list)
+            //Show users of list
+            userModalService.viewUsersModal(list);
           }
           return true;
         }

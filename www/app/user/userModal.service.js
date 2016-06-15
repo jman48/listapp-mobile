@@ -9,6 +9,7 @@
 
     var modalServ = {
       addUserModal: addUserModal,
+      viewUsersModal: viewUsersModal,
       getLoadedList: getLoadedList,
       getLoadedModal: getLoadedModal
     };
@@ -19,6 +20,17 @@
       workingList = list;
 
       $ionicModal.fromTemplateUrl('app/templates/addUser.html', {
+        animation: 'slide-in-up'
+      }).then(function (initModal) {
+        modal = initModal;
+        modal.show();
+      });
+    }
+
+    function viewUsersModal(list) {
+      workingList = list;
+
+      $ionicModal.fromTemplateUrl('app/templates/listUsers.html', {
         animation: 'slide-in-up'
       }).then(function (initModal) {
         modal = initModal;
