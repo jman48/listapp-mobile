@@ -34,6 +34,10 @@
       $scope.closeModal = function () {
         userModalService.getLoadedModal().hide();
       };
+
+      $scope.$on('$ionicView.enter', function() {
+        usersToAdd = [];
+      });
     })
 
 })();
