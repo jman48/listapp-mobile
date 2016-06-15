@@ -19,6 +19,9 @@
       if (search_string === '' || !search_string) {
         return $q.resolve([]);
       }
+      
+      search_string = search_string.toLowerCase();
+
 
       //Get users from local cache if we are only refining the list of users.
       //e.g if we searched for "bob" then cache all results for bob so when we search for "bobb" we can get results from local cache
