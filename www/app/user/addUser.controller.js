@@ -5,6 +5,8 @@
       $scope.list = userModalService.getLoadedList();
       $scope.users = [];
 
+      var usersToAdd = [];
+
       $scope.update = function (searchString) {
         userService.search(searchString).then(function (users) {
           $scope.users = users;
@@ -12,18 +14,20 @@
       };
 
       $scope.toggleUser = function (username) {
-        var userIdx = $scope.users.indexOf(username);
+        var userIdx = usersToAdd.indexOf(username);
 
         if (userIdx >= 0) {
-          $scope.users.splice(userIdx, 1);
+          usersToAdd.splice(userIdx, 1);
         } else {
-          $scope.users.push(username);
+          usersToAdd.push(username);
         }
       };
 
       $scope.addUsers = function () {
-        userService.addUsers($scope.list, $scope.users).then(function () {
-          $scope.closeModal();
+        userService.addUsers($scope.list, usersToAdd).then(function () {
+          var modal = userModalService.getLoadedModal();
+          userModalService.viewUsersModal($scope.list);
+          modal.hide();
         });
       };
 
