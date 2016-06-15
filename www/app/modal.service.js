@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('modalService', modalService);
 
-  function modalService($ionicActionSheet, listService, itemService, popUpService, $state, $ionicModal, userService, $rootScope) {
+  function modalService($ionicActionSheet, listService, itemService, popUpService, $state, userModalService) {
     var modalServ = {
         showListOptions: showListOptions,
         showItemOptions: showItemOptions
@@ -23,7 +23,7 @@
         buttons: [
           {text: 'Show'},
           {text: 'Edit'},
-          {text: 'Share'}
+          {text: 'Users'}
         ],
         cancel: function() {
           hideActionSheet();
@@ -39,8 +39,8 @@
           } else if (index == 1) {
             popUpService.showEditList(list, hideCallBack).then(hideActionSheet);
           } else if (index == 2) {
-            //Add user to list.
-            addUserModal(list)
+            //Show users of list
+            userModalService.viewUsersModal(list);
           }
           return true;
         }
@@ -70,46 +70,6 @@
           popUpService.showEditItem(item, callBack);
           return true;
         }
-      });
-    }
-
-    function addUserModal(list) {
-      var modalScope = $rootScope.$new();
-      modalScope.list = list;
-      modalScope.users = [];
-
-      modalScope.update = function (searchString) {
-        userService.search(searchString).then(function (users) {
-          modalScope.users = users;
-        })
-      };
-
-      modalScope.toggleUser = function (username) {
-        var userIdx = modalScope.users.indexOf(username);
-
-        if (userIdx >= 0) {
-          modalScope.users.splice(userIdx, 1);
-        } else {
-          modalScope.users.push(username);
-        }
-      };
-
-      modalScope.addUsers = function() {
-        userService.addUsers(list, modalScope.users).then(function() {
-          modalScope.closeModal();
-        });
-      };
-
-      modalScope.closeModal = function() {
-        modalScope.modal.hide();
-      };
-
-      $ionicModal.fromTemplateUrl('app/templates/addUser.html', {
-        scope: modalScope,
-        animation: 'slide-in-up'
-      }).then(function(initModal) {
-        modalScope.modal = initModal;
-        modalScope.modal.show();
       });
     }
 

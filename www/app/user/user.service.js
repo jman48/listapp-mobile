@@ -9,7 +9,8 @@
 
     var userServ = {
       search: search,
-      addUsers: addUsers
+      addUsers: addUsers,
+      getListUsers: getListUsers
     };
 
     return userServ;
@@ -51,6 +52,15 @@
 
       return $http.post(host + '/lists/' + list.id + '/users', addToList).then(function (response) {
         return response.data;
+      });
+    }
+
+    function getListUsers(list) {
+
+      return $http.get(host + '/lists/' + list.id + '/users').then(function (response) {
+        return response.data;
+      }, function (response) {
+        $q.reject(response.data);
       });
     }
   }
