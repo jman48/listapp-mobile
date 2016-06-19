@@ -52,3 +52,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .search-user-name {
   padding-left: 7px;
 }
+
+.delete-icon {
+  position: absolute;
+  right: 0;
+  padding: 16px 15px;
+  top: 0;
+
+  color: darkred;
+  font-size: 25px;
+}

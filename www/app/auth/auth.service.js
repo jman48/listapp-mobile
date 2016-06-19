@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('authService', authService);
 
-  function authService(auth, store, $state, $rootScope) {
+  function authService(auth, store, $state, $rootScope, userService) {
     var authServ = {
       login: login,
       logOut: logOut,
@@ -20,11 +20,11 @@
         }
       }, function(profile, token, accessToken, state, refreshToken) {
         // Success callback
-        store.set('profile', profile);
         store.set('token', token);
         store.set('refreshToken', refreshToken);
         $rootScope.$broadcast('loggedIn');
         $state.go('app.lists');
+        userService.getLoggedInUser();
       }, function() {
         // Error callback
       });
@@ -36,6 +36,7 @@
       store.remove('token');
       $rootScope.$broadcast('loggedOut');
       $state.go('login', {reload: true});
+      userService.setCurrentUser({});
     }
 
     function isAuthenticated() {
