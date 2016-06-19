@@ -8,7 +8,8 @@
       showEditList: showEditList,
       showEditItem: showEditItem,
       showNewList: showNewList,
-      showNewItem: showNewItem
+      showNewItem: showNewItem,
+      showConfirm: showConfirm
     }, hideCallBack;
 
     return modalServ;
@@ -126,6 +127,19 @@
             }
           }
         ]
+      });
+    }
+
+    function showConfirm(callBack, title, content) {
+      var confirmPopup = $ionicPopup.confirm({
+        title: title,
+        template: content
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          callBack()
+        }
       });
     }
   }
