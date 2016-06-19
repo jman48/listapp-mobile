@@ -5,13 +5,16 @@
 
   function userService($http, host, $q) {
     var userCache = [],
-      cachedSearchString;
+      cachedSearchString,
+      user;
 
     var userServ = {
       search: search,
       addUsers: addUsers,
       getListUsers: getListUsers,
-      removeListUser: removeListUser
+      removeListUser: removeListUser,
+      setCurrentUser: setCurrentUser,
+      getCurrentUser: getCurrentUser
     };
 
     return userServ;
@@ -75,6 +78,14 @@
       }, function (response) {
         $q.reject(response.data);
       });
+    }
+    
+    function setCurrentUser(currentUser) {
+      user = currentUser;
+    }
+    
+    function getCurrentUser() {
+      return user;
     }
   }
 })();
