@@ -24,6 +24,7 @@
         store.set('refreshToken', refreshToken);
         $rootScope.$broadcast('loggedIn');
         $state.go('app.lists');
+        userService.getLoggedInUser();
       }, function() {
         // Error callback
       });

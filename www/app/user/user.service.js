@@ -14,7 +14,8 @@
       getListUsers: getListUsers,
       removeListUser: removeListUser,
       setCurrentUser: setCurrentUser,
-      getCurrentUser: getCurrentUser
+      getCurrentUser: getCurrentUser,
+      getLoggedInUser: getLoggedInUser
     };
 
     return userServ;
@@ -86,6 +87,12 @@
     
     function getCurrentUser() {
       return user;
+    }
+    
+    function getLoggedInUser() {
+      $http.get(host + '/users').then(function (response) {
+        user = response.data;
+      })
     }
   }
 })();
