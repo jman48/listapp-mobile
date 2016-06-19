@@ -5,9 +5,13 @@
       $scope.list = userModalService.getLoadedList();
       $scope.users = [];
 
-      userService.getListUsers($scope.list).then(function(users) {
-        $scope.users = users;
-      });
+      update();
+
+      function update() {
+        userService.getListUsers($scope.list).then(function(users) {
+          $scope.users = users;
+        });
+      }
 
       $scope.closeModal = function () {
         userModalService.getLoadedModal().hide();
@@ -18,7 +22,11 @@
         var modal = userModalService.getLoadedModal();
         userModalService.addUserModal($scope.list);
         modal.hide();
-      }
+      };
+
+      $scope.removeUser = function (userId) {
+        userService.removeListUser(userId, $scope.list).then(update);
+      };
     })
 
 })();

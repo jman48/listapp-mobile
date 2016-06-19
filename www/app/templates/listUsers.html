@@ -10,7 +10,7 @@
       <ion-item ng-repeat="user in users">
         <img class="search-user-image" ng-src="{{user.picture}}" alt="user picture" />
         <span class="search-user-name">{{user.username}}</span>
-        <i class="fa fa-times fa-2x delete-icon" aria-hidden="true" ng-click="removeUser(user.username)"></i>
+        <i class="fa fa-times fa-2x delete-icon" aria-hidden="true" ng-click="removeUser(user.user_id)"></i>
       </ion-item>
     </ion-list>
     <button class="button button-full button-positive" ng-click="addUsers()">

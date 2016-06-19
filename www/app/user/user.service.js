@@ -10,7 +10,8 @@
     var userServ = {
       search: search,
       addUsers: addUsers,
-      getListUsers: getListUsers
+      getListUsers: getListUsers,
+      removeListUser: removeListUser
     };
 
     return userServ;
@@ -19,7 +20,7 @@
       if (search_string === '' || !search_string) {
         return $q.resolve([]);
       }
-      
+
       search_string = search_string.toLowerCase();
 
 
@@ -61,6 +62,15 @@
     function getListUsers(list) {
 
       return $http.get(host + '/lists/' + list.id + '/users').then(function (response) {
+        return response.data;
+      }, function (response) {
+        $q.reject(response.data);
+      });
+    }
+
+    function removeListUser(userId, list) {
+
+      return $http.delete(host + '/lists/' + list.id + '/users/' + userId).then(function (response) {
         return response.data;
       }, function (response) {
         $q.reject(response.data);

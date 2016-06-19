@@ -31,10 +31,6 @@
         });
       };
 
-      $scope.removeUser = function (username) {
-        userService.removeFromList(username, $scope.list);
-      };
-
       $scope.closeModal = function () {
         userModalService.getLoadedModal().hide();
       };
