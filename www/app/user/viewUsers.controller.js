@@ -1,7 +1,7 @@
 (function() {
   angular.module('listapp.controllers')
 
-    .controller('ViewUserCtrl', function($scope, userModalService, userService) {
+    .controller('ViewUserCtrl', function($scope, userModalService, userService, popUpService) {
       $scope.list = userModalService.getLoadedList();
       $scope.users = [];
 
@@ -25,7 +25,11 @@
       };
 
       $scope.removeUser = function (userId) {
-        userService.removeListUser(userId, $scope.list).then(update);
+        popUpService.showConfirm(removeUser, 'Delete from list', 'Are you sure you want to remove the user from this list?');
+
+        function removeUser() {
+          userService.removeListUser(userId, $scope.list).then(update);
+        }
       };
     })
 
