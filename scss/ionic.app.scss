@@ -62,3 +62,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   color: darkred;
   font-size: 25px;
 }
+
+
+.user-info {
+  padding: 10px 16px;
+
+  img {
+    width: 60px;
+  }
+
+  span {
+    display: block;
+    font-size: 1.3em;
+  }
+}

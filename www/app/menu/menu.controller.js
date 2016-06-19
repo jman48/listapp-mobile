@@ -2,11 +2,13 @@
   angular.module('listapp.controllers')
     .controller('menuCtrl', menuController);
 
-  menuController.$inject = ['$scope', 'authService'];
-
-  function menuController($scope, authService) {
+  function menuController($scope, authService, userService) {
     $scope.logout = function() {
       authService.logOut();
-    }
+    };
+
+    userService.getCurrentUser().then(function(user) {
+      $scope.user = user;
+    });
   }
 })();

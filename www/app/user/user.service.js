@@ -80,18 +80,25 @@
         $q.reject(response.data);
       });
     }
-    
+
     function setCurrentUser(currentUser) {
       user = currentUser;
     }
-    
+
     function getCurrentUser() {
-      return user;
+      if (user) {
+        $q.resolve(user);
+      } else {
+        return getLoggedInUser();
+      }
     }
-    
+
     function getLoggedInUser() {
-      $http.get(host + '/users').then(function (response) {
+      return $http.get(host + '/users').then(function (response) {
         user = response.data;
+        return user;
+      }, function (response) {
+        $q.reject(response.data);
       })
     }
   }
