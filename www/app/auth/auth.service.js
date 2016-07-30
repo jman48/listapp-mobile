@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('authService', authService);
 
-  function authService(auth, store, $state, $rootScope, userService) {
+  function authService(auth, store, $state, $rootScope, userService, statService) {
     var authServ = {
       login: login,
       logOut: logOut,
@@ -13,6 +13,8 @@
     return authServ;
 
     function login() {
+      statService.trackEvent('Auth', 'Login', 'Login');
+
       auth.signin({
         authParams: {
           scope: 'openid offline_access',
@@ -31,6 +33,8 @@
     }
 
     function logOut() {
+      statService.trackEvent('Auth', 'Login', 'Logout');
+      
       auth.signout();
       store.remove('profile');
       store.remove('token');

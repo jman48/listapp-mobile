@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('userService', userService);
 
-  function userService($http, host, $q) {
+  function userService($http, host, $q, statService) {
     var userCache = [],
       cachedSearchString,
       user;
@@ -21,6 +21,7 @@
     return userServ;
 
     function search(search_string) {
+
       if (search_string === '' || !search_string) {
         return $q.resolve([]);
       }
@@ -39,11 +40,15 @@
           }
         }
 
+        statService.trackEvent('Users', 'Search Local', search_string, users.length);
+        
         return $q.resolve(users);
       } else if (search_string.length < 3) {
         return $q.resolve([]);
       }
 
+      statService.trackEvent('Users', 'Search Remote', search_string);
+      
       //If search string is not in cache then get results from server
       cachedSearchString = search_string;
 
@@ -56,6 +61,8 @@
     }
 
     function addUsers(list, users) {
+      statService.trackEvent('Users', 'Management', 'Add', users.length);
+
       var addToList = {users: users};
 
       return $http.post(host + '/lists/' + list.id + '/users', addToList).then(function (response) {
@@ -73,6 +80,7 @@
     }
 
     function removeListUser(userId, list) {
+      statService.trackEvent('Users', 'Management', 'Remove');
 
       return $http.delete(host + '/lists/' + list.id + '/users/' + userId).then(function (response) {
         return response.data;

@@ -1,7 +1,7 @@
 (function() {
   angular.module('listapp.controllers')
 
-    .controller('ItemsCtrl', function($scope, $stateParams, itemService, modalService, popUpService, loading, listService) {
+    .controller('ItemsCtrl', function($scope, $stateParams, itemService, modalService, popUpService, loading, listService, statService) {
 
       $scope.list = listService.getList($stateParams.listId);
       $scope.items = [];
@@ -21,6 +21,7 @@
       };
 
       function getItems() {
+        statService.trackView('Items');
         loading.show();
 
         itemService.getItems($scope.list.id).then(function(items) {
