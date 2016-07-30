@@ -6,11 +6,16 @@
   function statService($window) {
 
     var statServ = {
+      startGathering: startGathering,
       trackView: trackView,
       trackEvent: trackEvent
     };
 
     return statServ;
+
+    function startGathering() {
+      $window.ga.startTrackerWithId('UA-81204352-3');
+    }
 
     function trackView(viewName) {
       if (typeof $window.ga !== 'undefined') {
