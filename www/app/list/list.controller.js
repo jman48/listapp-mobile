@@ -1,7 +1,7 @@
 (function() {
   angular.module('listapp.controllers')
 
-    .controller('ListCtrl', function($scope, $http, listService, modalService, popUpService, loading, $state) {
+    .controller('ListCtrl', function($scope, $http, listService, modalService, popUpService, loading, $state, statService) {
 
       $scope.addList = addList;
       $scope.lists = [];
@@ -23,6 +23,8 @@
       };
 
       function getLists() {
+        statService.trackView('Lists');
+
         if (!$scope.lists || $scope.lists.length === 0) {
           loading.show();
         }

@@ -3,7 +3,7 @@
   angular.module('listapp.services')
     .service('listService', listService);
 
-  function listService($http, host, $q) {
+  function listService($http, host, $q, statService) {
     var lists = {};
 
     var listServ = {
@@ -23,7 +23,7 @@
         response.data.forEach(function(list) {
           lists[list.id] = list;
         });
-        
+
         response.data.sort(function(a, b) {
           return a.order - b.order;
         });
@@ -35,12 +35,16 @@
     }
 
     function deleteList(listId) {
+      statService.trackEvent('List', 'Management', 'Delete');
+
       return $http.delete(host + '/lists/' + listId).then(function(response) {
         return response.data;
       });
     }
 
     function editList(listName, listId) {
+      statService.trackEvent('List', 'Management', 'Edit');
+
       var list = {list: {name: listName}};
 
       return $http.put(host + '/lists/' + listId, list).then(function(response) {
@@ -49,6 +53,8 @@
     }
 
     function addList(listName) {
+      statService.trackEvent('List', 'Management', 'Add');
+
       var list = {list: {name: listName}};
 
       return $http.post(host + '/lists', list).then(function(response) {
@@ -67,6 +73,8 @@
     }
 
     function saveOrder(lists) {
+      statService.trackEvent('List', 'Management', 'Order');
+
       var lists = {lists: lists};
 
       return $http.put(host + '/lists/order', lists).then(function(response) {

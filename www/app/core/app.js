@@ -1,6 +1,6 @@
 angular.module('listapp')
 
-  .run(function($ionicPlatform, auth) {
+  .run(function($ionicPlatform, auth, statService) {
     $ionicPlatform.ready(function() {
       // Hide the accessory bar by, default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -13,6 +13,8 @@ angular.module('listapp')
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
+
+      statService.startGathering();
 
       auth.hookEvents();
     });
