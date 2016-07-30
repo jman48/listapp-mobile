@@ -18,7 +18,9 @@ angular.module('listapp')
     });
   })
 
-  .config(function($httpProvider, authProvider, jwtInterceptorProvider) {
+  .config(function($httpProvider, authProvider, jwtInterceptorProvider, $ionicConfigProvider) {
+
+    $ionicConfigProvider.scrolling.jsScrolling(true);
 
     authProvider.init({
       domain: 'john.au.auth0.com',
