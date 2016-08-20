@@ -29,9 +29,12 @@
           hideActionSheet();
         },
         destructiveButtonClicked: function() {
-          listService.deleteList(list.id).then(function() {
-            hideOptions();
-          });
+
+          popUpService.showConfirm(function() {
+            listService.deleteList(list.id).then(function () {
+              hideOptions();
+            });
+          }, 'Delete list', 'Are you sure you want to delete this list?');
         },
         buttonClicked: function(index) {
           if (index === 0) {
@@ -62,9 +65,12 @@
           hideActionSheet();
         },
         destructiveButtonClicked: function() {
-          itemService.deleteItem(item).then(function() {
-            hideOptions();
-          });
+
+          popUpService.showConfirm(function() {
+            itemService.deleteItem(item).then(function () {
+              hideOptions();
+            });
+          }, 'Delete Item', 'Are you sure you want to delete this item?');
         },
         buttonClicked: function(index) {
           popUpService.showEditItem(item, callBack);
